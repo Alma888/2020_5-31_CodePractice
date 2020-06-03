@@ -1,0 +1,89 @@
+# 2020_5-31_CodePractice
+
+//1. 标题：个位数统计 (15)
+// 给定一个k位整数N = dk-1*10k-1 + ... + d1*101 + d0 (0<=di<=9, i=0,...,k-1, dk-1>0)，
+// 请编写程序统计每种不同 的个位数字出现的次数。例如：给定N = 100311，则有2个0，3个1，
+// 和1个3。
+// 【输入描述：】 每个输入包含1个测试用例，即一个不超过1000位的正整数N。
+// 【输出描述：】对N中每一种不同的个位数字，以D:M的格式在一行中输出该位数字D及其在N中
+//               出现的次数M。要求按D的 升序输出。 示例1: 输入100311 输出0:2 1:3 3:1
+
+//【题目解析】：
+//大家看到这道题的时候千万记住不要被前面那一大串看起来复杂的数学公式给唬住了。
+// 实际上读完题大家就会发现，就是将给定的任意正整数拆分为每个数字字符，统计出现次数罢了。
+//【解题思路】：
+//将给定的数字按照每位拆分为单个数字然后保存在list中，每碰到一个相同的数字就值加一，扫描
+//完整个字符串后遍历输出list集合即可。
+
+
+//方法一：利用数组解决
+import java.util.Scanner;
+
+public class day11_01 {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine(); //输入的String类型数字
+        int[] arr={0,0,0,0,0,0,0,0,0,0};
+        for(int i=0;i<s.length();i++){
+            arr[(int)(s.charAt(i)-'0')]++;
+        }
+        for(int j=0;j<arr.length;j++){
+            if(arr[j]!=0){
+                System.out.println(j+":"+arr[j]);
+            }
+        }
+    }
+}
+
+//方法二：通过List集合去解决
+import java.util.*;
+public class Main { 
+    public static void main(String[] args){ 
+        Scanner sc = new Scanner(System.in); 
+        String N = sc.next(); char[] chars = N.toCharArray();
+        /*
+        * * list***有10个item表示0-9，每个item的值表示数字的个数 
+        * 
+        * */
+        
+        List<Integer> list = new ArrayList<>(); 
+        for (int i = 0; i < 10; i++) { 
+            list.add(0);//初始化每个item都是0 
+        }
+        for (int i = 0; i < chars.length; i++) { 
+            // 每遇到一个数字，就把值+1 
+            list.set(chars[i]-'0',list.get(chars[i]-'0')+1); 
+        }
+        for (int i = 0; i < list.size(); i++) { 
+            if (list.get(i)>0){ 
+                System.out.println(i+":"+list.get(i));
+            }
+        }
+    }
+}
+//方法二：通过List集合去解决
+import java.util.*;
+public class Main { 
+    public static void main(String[] args){ 
+        Scanner sc = new Scanner(System.in); 
+        String N = sc.next(); char[] chars = N.toCharArray();
+        /*
+        * * list***有10个item表示0-9，每个item的值表示数字的个数 
+        * 
+        * */
+        
+        List<Integer> list = new ArrayList<>(); 
+        for (int i = 0; i < 10; i++) { 
+            list.add(0);//初始化每个item都是0 
+        }
+        for (int i = 0; i < chars.length; i++) { 
+            // 每遇到一个数字，就把值+1 
+            list.set(chars[i]-'0',list.get(chars[i]-'0')+1); 
+        }
+        for (int i = 0; i < list.size(); i++) { 
+            if (list.get(i)>0){ 
+                System.out.println(i+":"+list.get(i));
+            }
+        }
+    }
+}
